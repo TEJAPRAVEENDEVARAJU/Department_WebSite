@@ -1,0 +1,108 @@
+<?php
+session_start();
+$message = "";
+
+// Handle login
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $employee_id = htmlspecialchars($_POST['employee_id']);
+    $input_password = htmlspecialchars($_POST['password']);  // keep user password separate
+
+    // Database credentials
+    $host = 'sql211.infinityfree.com';
+    $db_user = 'if0_39030192';
+    $db_pass = 'sUheL4DCaoSn';
+    $dbname = 'if0_39030192_gnome';
+
+    $conn = new mysqli($host, $db_user, $db_pass, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Check if the employee exists
+    $stmt = $conn->prepare("SELECT * FROM employees WHERE employee_id = ?");
+    $stmt->bind_param("s", $employee_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        // If passwords are hashed in DB
+        if (password_verify($input_password, $user['password'])) {
+            $_SESSION['employee_name'] = $user['name'];
+            header("Location: Dashboard_admin.php");
+            exit();
+        } 
+        // If plain text stored in DB
+        elseif ($input_password === $user['password']) {
+            $_SESSION['employee_name'] = $user['name'];
+            header("Location: Dashboard_admin.php");
+            exit();
+        } 
+        else {
+            $message = "Incorrect password.";
+        }
+    } else {
+        $message = "Employee ID not found.";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+            background-image: url('emp.JPG'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Optional: Adds a slight background color for readability */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        </style>
+           <link rel="stylesheet" herf = "bootstrap-5.0.2-dist/css/bootstrap.min.css">
+           <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+        </head>
+<body>
+ 
+    <div class="container mt-5">
+        <h2 class="text-center">Admin Login</h2>
+
+        <?php if ($message): ?>
+            <div class="alert alert-danger"><?php echo $message; ?></div>
+        <?php endif; ?>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label for="employee_id" class="form-label">Employee ID:</label>
+                <input type="text" id="employee_id" name="employee_id" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+    </div>
+   
+</body>
+</html>
