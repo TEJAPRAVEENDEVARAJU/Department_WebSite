@@ -10,4 +10,4 @@
 <img width="1512" height="982" alt="Screenshot 2025-10-05 at 11 45 17 PM" src="https://github.com/user-attachments/assets/07beefd1-e389-49a1-9e67-faad20eb8ed7" />
 <img width="1512" height="982" alt="Screenshot 2025-10-05 at 11 45 36 PM" src="https://github.com/user-attachments/assets/8fe40a8c-ba6c-41a0-b3a3-3330115fa377" />
 <img width="1512" height="982" alt="Screenshot 2025-10-05 at 11 45 50 PM" src="https://github.com/user-attachments/assets/849ba988-e47a-4125-b79a-edb64ff5a868" />
-<h3>working link:https://department.42web.io/</h3>
+
