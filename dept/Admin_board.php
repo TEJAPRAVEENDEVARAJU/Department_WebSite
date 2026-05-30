@@ -9,10 +9,10 @@ if (!isset($_SESSION['employee_name'])) {
 }
 
 // ✅ Database Connection
-$host = 'sql211.infinityfree.com';
-$user = 'if0_39030192';
-$password = 'sUheL4DCaoSn';
-$dbname = 'if0_39030192_infomatrix';
+$host = 'host';
+$user = 'user';
+$password = 'password';
+$dbname = 'dbname';
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
