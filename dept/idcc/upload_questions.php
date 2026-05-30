@@ -8,10 +8,10 @@ if (!isset($_SESSION['employee_name'])) {
     exit();
 }
 
-$host = 'sql211.infinityfree.com';
-$udbname'if0_39030192';
-$password = 'sUheL4DCaoSn'; // Use your database password
-$dbname = 'if0_39030192_idcc';
+$host = 'host';
+$user = 'user';
+$password = 'password';
+$dbname = 'dbname';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
