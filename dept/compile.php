@@ -1,7 +1,7 @@
 <?php
 $JUDGE0_API_URL = "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false&wait=true";
 $RAPIDAPI_HOST = "judge0-ce.p.rapidapi.com";
-$RAPIDAPI_KEY = "2fb0988169msheb718fdf27e59f4p18e08djsn74519bfd95c5"; // your key
+$RAPIDAPI_KEY = "key"; // your key
 
  
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
