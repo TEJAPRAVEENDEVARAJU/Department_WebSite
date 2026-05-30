@@ -8,10 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = htmlspecialchars($_POST['password']);
 
     // Database connection setup
-    $host = 'sql211.infinityfree.com';
-    $user = 'if0_39030192';
-    $password_db = 'sUheL4DCaoSn'; // database password
-    $dbname = 'if0_39030192_infomatrix';
+    $host = 'host';
+$user = 'user';
+$password = 'password';
+$dbname = 'dbname';
 
     $conn = new mysqli($host, $user, $password_db, $dbname);
 
